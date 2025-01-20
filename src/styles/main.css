@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+@import './base/reset.css';
+@import './base/variables.css';
+@import './base/global.css';
+
+@import 'tailwindcss/components';
+@import './components/container.css';
+@import './components/flow.css';
+@import './components/grid.css';
+@import './components/prose.css';
+
+@import 'tailwindcss/utilities';
