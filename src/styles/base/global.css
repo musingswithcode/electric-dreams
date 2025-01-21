@@ -57,3 +57,9 @@ pre {
   padding: 1em;
   font-size: 85%;
 }
+
+figcaption {
+  text-align: center;
+  font-size: var(--step--1);
+  margin-block: var(--space-3xs);
+}

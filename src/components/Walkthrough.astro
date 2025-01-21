@@ -1,0 +1,256 @@
+---
+import type {DecorationItem, ShikiTransformer} from 'shiki'
+import {Code} from 'astro:components'
+
+const {code, steps = []} = Astro.props
+
+const transformers: ShikiTransformer = {
+  line(node, line) {
+    for (let i = 0; i < steps.length; i++) {
+      if (steps[i].lines?.includes(line)) {
+        node.properties['data-step'] = i + 1
+      }
+    }
+  },
+
+  preprocess(code, options) {
+    let decorations: DecorationItem[] = []
+
+    const codeLines = code.split('\n')
+    for (let i = 0; i < steps.length; i++) {
+      const {lines, highlights} = steps[i]
+
+      highlights?.forEach((highlight: string) => {
+        lines?.forEach((line: number) => {
+          const codeLine = codeLines[line - 1]
+
+          const start = codeLine.indexOf(highlight)
+          const end = start + highlight.length
+          if (start == -1) return
+
+          decorations.push({
+            start: {line: line - 1, character: start},
+            end: {line: line - 1, character: end},
+            properties: {class: 'highlighted-word'}
+          })
+        })
+      })
+    }
+    options.decorations ||= []
+    options.decorations.push(...decorations)
+  }
+}
+---
+
+<div class="Walkthrough sidebar my-m" data-direction="rtl">
+  <Code
+    class="Walkthrough__code"
+    code={code.trim()}
+    lang="js"
+    theme="github-light"
+    transformers={[transformers]}
+  />
+
+  <div class="Walkthrough__steps">
+    <slot />
+  </div>
+</div>
+
+<style is:global>
+  .Walkthrough {
+    --color-step-1: 192, 38, 211;
+    --color-step-2: 124, 58, 237;
+    --color-step-3: 79, 70, 229;
+    --color-step-4: 2, 132, 199;
+    --color-step-5: 13, 148, 136;
+    --color-step-6: 22, 163, 74;
+    --color-step-7: 202, 138, 4;
+    --color-step-8: 234, 88, 12;
+    --color-step-9: 225, 29, 72;
+
+    --color-highlighted-word: rgba(2, 132, 199, 0.125);
+  }
+
+  .Walkthrough__code {
+    padding-inline: 0;
+  }
+
+  .Walkthrough__code code {
+    padding-inline: 0;
+  }
+
+  .Walkthrough__code .line {
+    display: inline-block;
+    width: 100%;
+    padding-inline: 2rem;
+    position: relative;
+    scroll-margin-block: 5ex;
+  }
+
+  .Walkthrough__code .line[data-step]::before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-inline-start: 5px solid rgb(var(--step-color));
+    pointer-events: none;
+  }
+
+  .Walkthrough__code .line[data-step] {
+    transition: background 250ms ease-in-out;
+    cursor: pointer;
+  }
+  .Walkthrough__code :is(.line[data-step]:hover, .line[data-step].highlight) {
+    background: rgba(var(--step-color), 0.1);
+  }
+
+  .Walkthrough__code .line[data-step='1'] {
+    --step-color: var(--color-step-1);
+  }
+  .Walkthrough__code .line[data-step='2'] {
+    --step-color: var(--color-step-2);
+  }
+  .Walkthrough__code .line[data-step='3'] {
+    --step-color: var(--color-step-3);
+  }
+  .Walkthrough__code .line[data-step='4'] {
+    --step-color: var(--color-step-4);
+  }
+  .Walkthrough__code .line[data-step='5'] {
+    --step-color: var(--color-step-5);
+  }
+  .Walkthrough__code .line[data-step='6'] {
+    --step-color: var(--color-step-6);
+  }
+  .Walkthrough__code .line[data-step='7'] {
+    --step-color: var(--color-step-7);
+  }
+  .Walkthrough__code .line[data-step='8'] {
+    --step-color: var(--color-step-8);
+  }
+  .Walkthrough__code .line[data-step='9'] {
+    --step-color: var(--color-step-9);
+  }
+
+  .Walkthrough__code .highlighted-word {
+    background: var(--color-highlighted-word);
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+  }
+
+  .Walkthrough__steps {
+    font-size: var(--step--1);
+  }
+
+  .Walkthrough__steps ol {
+    list-style-type: none;
+    padding-inline-start: 0;
+  }
+
+  .Walkthrough__steps ol li {
+    position: relative;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    max-width: unset;
+    transition: background 250ms ease-in-out;
+    cursor: pointer;
+    border-radius: 4px;
+    scroll-margin-block: 5ex;
+  }
+
+  .Walkthrough__steps ol li::before {
+    content: counter(list-item);
+    color: var(--color-light);
+    position: absolute;
+    background: rgb(var(--step-color));
+    border-radius: 50%;
+    top: 0.8rem;
+    left: 0.5rem;
+    width: 1.6em;
+    height: 1.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    line-height: 1;
+    font-size: var(--step--2);
+  }
+
+  .Walkthrough__steps ol :is(li:hover, li.highlight) {
+    background: rgba(var(--step-color), 0.1);
+  }
+
+  .Walkthrough__steps ol li:nth-child(1) {
+    --step-color: var(--color-step-1);
+  }
+  .Walkthrough__steps ol li:nth-child(2) {
+    --step-color: var(--color-step-2);
+  }
+  .Walkthrough__steps ol li:nth-child(3) {
+    --step-color: var(--color-step-3);
+  }
+  .Walkthrough__steps ol li:nth-child(4) {
+    --step-color: var(--color-step-4);
+  }
+  .Walkthrough__steps ol li:nth-child(5) {
+    --step-color: var(--color-step-5);
+  }
+  .Walkthrough__steps ol li:nth-child(6) {
+    --step-color: var(--color-step-6);
+  }
+  .Walkthrough__steps ol li:nth-child(7) {
+    --step-color: var(--color-step-7);
+  }
+  .Walkthrough__steps ol li:nth-child(8) {
+    --step-color: var(--color-step-8);
+  }
+  .Walkthrough__steps ol li:nth-child(9) {
+    --step-color: var(--color-step-9);
+  }
+</style>
+
+<script>
+  const getSteps = (node: Element): NodeListOf<HTMLLIElement> =>
+    node.querySelectorAll('.Walkthrough__steps li')
+  const getStep = (
+    node: Element,
+    step: string | number
+  ): HTMLLIElement | null =>
+    node.querySelector(`.Walkthrough__steps li[data-step='${step}']`)
+  const getLines = (node: Element): NodeListOf<HTMLSpanElement> =>
+    node.querySelectorAll('.Walkthrough__code .line[data-step]')
+  const getStepLines = (node: Element, step: string | number) =>
+    node.querySelectorAll(`.Walkthrough__code .line[data-step='${step}']`)
+
+  const walkthroughs = document.querySelectorAll('.Walkthrough')
+  walkthroughs.forEach(setupWalkthrough)
+
+  function setupWalkthrough(node: Element) {
+    const steps = getSteps(node)
+
+    steps.forEach((step, i) => {
+      step.dataset.step = `${i + 1}`
+      const stepLines = getStepLines(node, i + 1)
+      step.onmouseenter = () =>
+        stepLines.forEach(line => line.classList.add('highlight'))
+      step.onmouseleave = () =>
+        stepLines.forEach(line => line.classList.remove('highlight'))
+    })
+
+    const lines = getLines(node)
+    lines.forEach(line => {
+      const step = line.dataset.step!
+      const relatedLines = getStepLines(node, step)
+      const relatedStep = getStep(node, step)
+      line.onmouseenter = () => {
+        relatedLines.forEach(line => line.classList.add('highlight'))
+        relatedStep?.classList.add('highlight')
+      }
+      line.onmouseleave = () => {
+        relatedLines.forEach(line => line.classList.remove('highlight'))
+        relatedStep?.classList.remove('highlight')
+      }
+    })
+  }
+</script>

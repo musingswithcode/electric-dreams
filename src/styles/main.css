@@ -8,5 +8,6 @@
 @import './components/flow.css';
 @import './components/grid.css';
 @import './components/prose.css';
+@import './components/sidebar.css';
 
 @import 'tailwindcss/utilities';

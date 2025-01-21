@@ -19,10 +19,3 @@
   max-width: 55ch;
   text-wrap: pretty;
 }
-
-.prose .prose--sm {
-  font-size: var(--step--1);
-}
-.prose .prose--sm li + li {
-  margin-block-start: 1em;
-}

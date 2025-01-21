@@ -1,0 +1,84 @@
+---
+import Walkthrough from '~/components/Walkthrough.astro'
+---
+
+<h2>Vera Molnár &ndash; <em>Untitled 1974 (Squares)</em></h2>
+
+<Walkthrough
+  code={`
+// Max value to offset rectangles by.
+var maxOffset = 30
+
+function setup() {
+  createCanvas(400, 400)
+  rectMode(CENTER)
+  noLoop()
+}
+
+function draw() {
+  background(255)
+  
+  for (var size = 10; size < 300; size += 10) {
+    var offsetX = random(-maxOffset, maxOffset)
+    var offsetY = random(-maxOffset, maxOffset)
+    
+    noFill()
+    rect(width/2 + offsetX, height/2 + offsetY, size, size)
+  }
+}
+`}
+  steps={[
+    {lines: [5, 6, 7]},
+    {lines: [13, 19], highlights: ['size = 10', 'size < 300', 'size += 10']},
+    {lines: [2]},
+    {lines: [14, 15]},
+    {lines: [18], highlights: ['width/2 + offsetX', 'height/2 + offsetY']}
+  ]}
+>
+  <ol>
+    <li>
+      We start by setting up a 400 x 400px canvas inside the <code>setup</code> function.
+      We make drawing rectangles easier for ourselves by setting
+      <code>rectMode</code> to <code>CENTER</code> which moves the anchor point for
+      drawing squares from the default top-left to the center. Finally, because we
+      want a static drawing, we call <code>noLoop()</code> to stop the
+      <code>draw</code> function from being called repeatedly.
+    </li>
+    <li>
+      Inside the <code>draw</code> function, we use a <code>for</code> loop to draw
+      squares of increasingly larger <code>size</code>s, starting with 10, upto
+      (but less than) 300, and increasing in units of 10.
+    </li>
+    <li>
+      At the beginning of the sketch, we've created a variable called
+      <code>maxOffset</code> to control the extent of the random offset we'll apply
+      to center of the square.
+    </li>
+    <li>
+      Back again inside the <code>for</code> loop, we calculate x and y offsets using
+      the <code>random</code> function, passing it <code>-maxOffset</code> as the
+      minimum and <code>+maxOffset</code> as the maximum.
+    </li>
+    <li>
+      At last, we draw the square of side length <code>size</code> using the
+      <code>rectangle</code> function, setting the center as the center of the canvas
+      <code>(width/2, height/2)</code> but offset by <code>offsetX</code> and
+      <code>offsetY</code>.
+    </li>
+  </ol>
+</Walkthrough>
+
+<div class="grid my-m">
+  <figure>
+    <img src="/images/molnar-squares-maxoffset-10.png" alt="" />
+    <figcaption><code>maxOffset = 10</code></figcaption>
+  </figure>
+  <figure>
+    <img src="/images/molnar-squares-maxoffset-20.png" alt="" />
+    <figcaption><code>maxOffset = 20</code></figcaption>
+  </figure>
+  <figure>
+    <img src="/images/molnar-squares-maxoffset-30.png" alt="" />
+    <figcaption><code>maxOffset = 30</code></figcaption>
+  </figure>
+</div>

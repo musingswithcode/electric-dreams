@@ -6,15 +6,6 @@
   --color-light: #faf9f5;
   --color-muted: #5b5b66;
 
-  --color-step-1: 192, 38, 211;
-  --color-step-2: 124, 58, 237;
-  --color-step-3: 79, 70, 229;
-  --color-step-4: 2, 132, 199;
-  --color-step-5: 13, 148, 136;
-  --color-step-6: 22, 163, 74;
-
-  --color-highlight: rgba(2, 132, 199, 0.125);
-
   --font-serif: 'Crimson Pro', serif;
 
   --leading-none: 1;
@@ -55,10 +46,6 @@
   /* Custom pairs */
   --space-s-l: clamp(1.125rem, 0.4728rem + 3.2609vw, 3rem);
 
-  --grid-max-width: 75rem;
-  --grid-gutter: var(
-    --space-xs-s,
-    clamp(0.875rem, 0.6576rem + 1.087vw, 1.5rem)
-  );
-  --grid-columns: 12;
+  --content-max-width: 75rem;
+  --gutter: var(--space-xs-s, clamp(0.875rem, 0.6576rem + 1.087vw, 1.5rem));
 }
