@@ -1,3 +1,3 @@
 # Electric Dreams
 
-See musingswithcode.github.io/electric-dreams.
+See https://musingswithcode.github.io/electric-dreams.
