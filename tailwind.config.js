@@ -25,7 +25,8 @@ export default {
       accent: 'var(--color-accent)',
       dark: 'var(--color-dark)',
       light: 'var(--color-light)',
-      muted: 'var(--color-muted)'
+      muted: 'var(--color-muted)',
+      lightest: 'var(--color-lightest)'
     },
     fontFamily: {
       serif: ['var(--font-serif)', ...defaultTheme.fontFamily.serif]

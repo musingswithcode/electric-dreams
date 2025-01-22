@@ -1,0 +1,47 @@
+<div id="molnar-squares-teaser">
+  <div id="molnar-squares-sketch" class="bg-lightest max-h-[400px] w-full">
+  </div>
+  <pre
+    class="mt-2xs p-2xs text-center"><code>maxOffset = <span class="TKAdjustableNumber" data-var="maxOffset" data-min="0" data-max="50" /></code></pre>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('molnar-squares-teaser')
+
+    new p5(sketch => {
+      var tangle = new Tangle(root, {
+        initialize() {
+          this.maxOffset = 30
+        },
+        update() {}
+      })
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('molnar-squares-sketch')
+        canvas.addClass('mx-auto flex')
+        sketch.rectMode(sketch.CENTER)
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+        sketch.randomSeed(42)
+
+        var maxOffset = tangle.getValue('maxOffset')
+
+        for (var size = 10; size < 300; size += 10) {
+          var offsetX = sketch.random(-maxOffset, maxOffset)
+          var offsetY = sketch.random(-maxOffset, maxOffset)
+
+          sketch.noFill()
+          sketch.rect(
+            sketch.width / 2 + offsetX,
+            sketch.height / 2 + offsetY,
+            size,
+            size
+          )
+        }
+      }
+    }, root)
+  </script>
+</div>

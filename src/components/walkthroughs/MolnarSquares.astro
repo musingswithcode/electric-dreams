@@ -1,32 +1,42 @@
 ---
 import Walkthrough from '~/components/Walkthrough.astro'
+import Teaser from './MolnarSquaresTeaser.astro'
+import imgMaxOffset10 from './images/molnar-squares-maxoffset-10.png'
+import imgMaxOffset20 from './images/molnar-squares-maxoffset-20.png'
+import imgMaxOffset30 from './images/molnar-squares-maxoffset-30.png'
+import imgEqualOffsets from './images/molnar-squares-equal-offsets.png'
+import imgOffsetSides from './images/molnar-squares-offset-sides.png'
+import imgCircles from './images/molnar-squares-circles.png'
+import sketch from './sketches/molnar-squares.js?raw'
 ---
 
 <h2>Vera Molnár &ndash; <em>Untitled 1974 (Squares)</em></h2>
 
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      One pattern to use randomness in a generative sketch is to use it as an
+      offset on parameters of a shape, such as position or their dimensions. In
+      p5.js, you can call the <code>random</code> function with a minimum and maximum
+      value, like so: <code>random(-min, max)</code>. This returns a random
+      value between those two bounds.
+    </p>
+    <p>
+      By controlling where these offsets are applied or by repeating shapes
+      using loops, we can create quite complex patterns.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/z3y1EU8p"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<h3>Walkthrough</h3>
 <Walkthrough
-  code={`
-// Max value to offset rectangles by.
-var maxOffset = 30
-
-function setup() {
-  createCanvas(400, 400)
-  rectMode(CENTER)
-  noLoop()
-}
-
-function draw() {
-  background(255)
-  
-  for (var size = 10; size < 300; size += 10) {
-    var offsetX = random(-maxOffset, maxOffset)
-    var offsetY = random(-maxOffset, maxOffset)
-    
-    noFill()
-    rect(width/2 + offsetX, height/2 + offsetY, size, size)
-  }
-}
-`}
+  code={sketch}
   steps={[
     {lines: [5, 6, 7]},
     {lines: [13, 19], highlights: ['size = 10', 'size < 300', 'size += 10']},
@@ -70,15 +80,40 @@ function draw() {
 
 <div class="grid my-m">
   <figure>
-    <img src="/images/molnar-squares-maxoffset-10.png" alt="" />
+    <img src={imgMaxOffset10.src} alt="" />
     <figcaption><code>maxOffset = 10</code></figcaption>
   </figure>
   <figure>
-    <img src="/images/molnar-squares-maxoffset-20.png" alt="" />
+    <img src={imgMaxOffset20.src} alt="" />
     <figcaption><code>maxOffset = 20</code></figcaption>
   </figure>
   <figure>
-    <img src="/images/molnar-squares-maxoffset-30.png" alt="" />
+    <img src={imgMaxOffset30.src} alt="" />
     <figcaption><code>maxOffset = 30</code></figcaption>
+  </figure>
+</div>
+
+<h3>Variations</h3>
+<p>
+  The same basic pattern can be applied in different forms to generate
+  interesting visual variations. Here's a few ideas for you to try:
+</p>
+<div class="grid">
+  <figure>
+    <img src={imgEqualOffsets.src} alt="" />
+    <figcaption>
+      Set equal offsets on the center x and y coordinates of the rectangle.
+    </figcaption>
+  </figure>
+  <figure>
+    <img src={imgOffsetSides.src} alt="" />
+    <figcaption>
+      Instead of offsetting the center, try offsetting the rectangle's width and
+      height.
+    </figcaption>
+  </figure>
+  <figure>
+    <img src={imgCircles.src} alt="" />
+    <figcaption>Use other shapes such as circles.</figcaption>
   </figure>
 </div>
