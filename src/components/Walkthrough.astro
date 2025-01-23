@@ -82,7 +82,7 @@ const transformers: ShikiTransformer = {
   .Walkthrough__code .line {
     display: inline-block;
     width: 100%;
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
     position: relative;
     scroll-margin-block: 5ex;
   }
@@ -144,12 +144,12 @@ const transformers: ShikiTransformer = {
     font-size: var(--step--1);
   }
 
-  .Walkthrough__steps ol {
+  .Walkthrough__steps > ol {
     list-style-type: none;
     padding-inline-start: 0;
   }
 
-  .Walkthrough__steps ol li {
+  .Walkthrough__steps > ol > li {
     position: relative;
     padding: 0.5rem 1rem 0.5rem 2.5rem;
     max-width: unset;
@@ -159,7 +159,7 @@ const transformers: ShikiTransformer = {
     scroll-margin-block: 5ex;
   }
 
-  .Walkthrough__steps ol li::before {
+  .Walkthrough__steps > ol > li::before {
     content: counter(list-item);
     color: var(--color-light);
     position: absolute;
@@ -177,47 +177,47 @@ const transformers: ShikiTransformer = {
     font-size: var(--step--2);
   }
 
-  .Walkthrough__steps ol :is(li:hover, li.highlight) {
+  .Walkthrough__steps > ol > :is(li:hover, li.highlight) {
     background: rgba(var(--step-color), 0.1);
   }
 
-  .Walkthrough__steps ol li:nth-child(1) {
+  .Walkthrough__steps > ol > li:nth-child(1) {
     --step-color: var(--color-step-1);
   }
-  .Walkthrough__steps ol li:nth-child(2) {
+  .Walkthrough__steps > ol > li:nth-child(2) {
     --step-color: var(--color-step-2);
   }
-  .Walkthrough__steps ol li:nth-child(3) {
+  .Walkthrough__steps > ol > li:nth-child(3) {
     --step-color: var(--color-step-3);
   }
-  .Walkthrough__steps ol li:nth-child(4) {
+  .Walkthrough__steps > ol > li:nth-child(4) {
     --step-color: var(--color-step-4);
   }
-  .Walkthrough__steps ol li:nth-child(5) {
+  .Walkthrough__steps > ol > li:nth-child(5) {
     --step-color: var(--color-step-5);
   }
-  .Walkthrough__steps ol li:nth-child(6) {
+  .Walkthrough__steps > ol > li:nth-child(6) {
     --step-color: var(--color-step-6);
   }
-  .Walkthrough__steps ol li:nth-child(7) {
+  .Walkthrough__steps > ol > li:nth-child(7) {
     --step-color: var(--color-step-7);
   }
-  .Walkthrough__steps ol li:nth-child(8) {
+  .Walkthrough__steps > ol > li:nth-child(8) {
     --step-color: var(--color-step-8);
   }
-  .Walkthrough__steps ol li:nth-child(9) {
+  .Walkthrough__steps > ol > li:nth-child(9) {
     --step-color: var(--color-step-9);
   }
 </style>
 
 <script>
   const getSteps = (node: Element): NodeListOf<HTMLLIElement> =>
-    node.querySelectorAll('.Walkthrough__steps li')
+    node.querySelectorAll('.Walkthrough__steps > ol > li')
   const getStep = (
     node: Element,
     step: string | number
   ): HTMLLIElement | null =>
-    node.querySelector(`.Walkthrough__steps li[data-step='${step}']`)
+    node.querySelector(`.Walkthrough__steps > ol > li[data-step='${step}']`)
   const getLines = (node: Element): NodeListOf<HTMLSpanElement> =>
     node.querySelectorAll('.Walkthrough__code .line[data-step]')
   const getStepLines = (node: Element, step: string | number) =>

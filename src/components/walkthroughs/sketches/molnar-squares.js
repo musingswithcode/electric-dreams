@@ -15,6 +15,6 @@ function draw() {
     var offsetY = random(-maxOffset, maxOffset)
 
     noFill()
-    rect(width / 2 + offsetX, height / 2 + offsetY, size, size)
+    rect(width/2 + offsetX, height/2 + offsetY, size, size)
   }
 }

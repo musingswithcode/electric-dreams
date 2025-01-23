@@ -1,0 +1,62 @@
+<div id="cubic-disarray-teaser">
+  <div id="cubic-disarray-sketch" class="max-h-[400px] w-full bg-lightest">
+  </div>
+  <pre
+    class="mt-2xs p-2xs text-center"><code>maxRotate = <span class="TKAdjustableNumber" data-var="maxRotate" data-min="0" data-max="60" />, maxTranslate = <span class="TKAdjustableNumber" data-var="maxTranslate" data-min="0" data-max="30" /></code></pre>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('cubic-disarray-teaser')
+
+    new p5(sketch => {
+      var padding = 20
+      var cellSize = 40
+
+      var tangle = new Tangle(root, {
+        initialize() {
+          this.maxRotate = 30
+          this.maxTranslate = 15
+        },
+        update() {}
+      })
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('cubic-disarray-sketch')
+        canvas.addClass('mx-auto flex')
+        sketch.rectMode(sketch.CENTER)
+        sketch.angleMode(sketch.DEGREES)
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+        sketch.randomSeed(42)
+
+        for (var y = padding; y < sketch.height - 2 * padding; y += cellSize) {
+          for (var x = padding; x < sketch.width - 2 * padding; x += cellSize) {
+            sketch.drawCell(x + cellSize / 2, y + cellSize / 2)
+          }
+        }
+      }
+
+      sketch.drawCell = (x, y) => {
+        sketch.push()
+        sketch.translate(x, y)
+
+        var maxTranslate = tangle.getValue('maxTranslate')
+        var maxRotate = tangle.getValue('maxRotate')
+
+        var translateBy =
+          sketch.random(-maxTranslate, maxTranslate) * (y / sketch.height)
+        var rotateBy =
+          sketch.random(-maxRotate, maxRotate) * (y / sketch.height)
+        sketch.translate(translateBy, 0)
+        sketch.rotate(rotateBy)
+
+        sketch.rect(0, 0, cellSize, cellSize)
+
+        sketch.pop()
+      }
+    }, root)
+  </script>
+</div>

@@ -16,18 +16,18 @@ import sketch from './sketches/molnar-squares.js?raw'
   <div class="prose flow">
     <p>
       One pattern to use randomness in a generative sketch is to use it as an
-      offset on parameters of a shape, such as position or their dimensions. In
-      p5.js, you can call the <code>random</code> function with a minimum and maximum
-      value, like so: <code>random(-min, max)</code>. This returns a random
-      value between those two bounds.
+      offset on parameters of a shape, such as position or their dimensions. By
+      controlling where these offsets are applied or by repeating shapes using
+      loops, we can create quite complex patterns.
     </p>
     <p>
-      By controlling where these offsets are applied or by repeating shapes
-      using loops, we can create quite complex patterns.
+      In p5.js, you can call the <code>random</code> function with a minimum and
+      maximum value, like so: <code>random(-min, max)</code>. This returns a
+      random value between those two bounds.
     </p>
     <a
       class="button my-m"
-      href="https://editor.p5js.org/ajithranka/sketches/z3y1EU8p"
+      href="https://editor.p5js.org/ajithranka/sketches/8U-U6vCuR"
       target="_blank">Open sketch in p5.js editor</a
     >
   </div>
@@ -42,7 +42,7 @@ import sketch from './sketches/molnar-squares.js?raw'
     {lines: [13, 19], highlights: ['size = 10', 'size < 300', 'size += 10']},
     {lines: [2]},
     {lines: [14, 15]},
-    {lines: [18], highlights: ['width / 2 + offsetX', 'height / 2 + offsetY']}
+    {lines: [18], highlights: ['width/2 + offsetX', 'height/2 + offsetY']}
   ]}
 >
   <ol>

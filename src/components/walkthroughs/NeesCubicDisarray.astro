@@ -1,0 +1,149 @@
+---
+import Walkthrough from '~/components/Walkthrough.astro'
+import Teaser from './NeesCubicDisarrayTeaser.astro'
+import img015 from './images/nees-cubic-disarray-0-15.png'
+import img300 from './images/nees-cubic-disarray-30-0.png'
+import img3015 from './images/nees-cubic-disarray-30-15.png'
+import imgAlongX from './images/nees-cubic-disarray-along-x.png'
+import imgCenter from './images/nees-cubic-disarray-center.png'
+import imgScale from './images/nees-cubic-disarray-scale.png'
+import sketch from './sketches/nees-cubic-disarray.js?raw'
+---
+
+<h2>Georg Nees &ndash; <em>Cubic Disarray, 1968</em></h2>
+
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      Offsets don't necessarily need to do simple translations on a shape. You
+      can also you use rotation or scaling. In this piece by Georg Nees, a grid
+      of cells is systematically translated and rotated by random offset as you
+      go vertically down the grid, creating a sense of controlled disorder.
+    </p>
+    <p>
+      In p5.js, you can shift the origin of the coordinate system by using the
+      <code>translate</code> function and rotate it by using the
+      <code>rotate</code> before drawing. Remember to place any transforms inside
+      <code>push</code> and <code>pop</code> to isolate it from the rest of the drawing.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/NNr7Ny1WJ"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<h3>Walkthrough</h3>
+<Walkthrough
+  code={sketch}
+  steps={[
+    {lines: [2, 5, 8, 11]},
+    {lines: [14, 15, 16, 17]},
+    {
+      lines: [23, 24, 26, 27],
+      highlights: [
+        'padding',
+        'height - 2 * padding',
+        'cellSize',
+        'width - 2 * padding'
+      ]
+    },
+    {lines: [25]},
+    {lines: [31, 32, 41]},
+    {lines: [34, 35, 36, 37], highlights: ['y / height']},
+    {lines: [39]}
+  ]}
+>
+  <ol>
+    <li>
+      At the top of the sketch, we create a few constants to control parameters
+      in the drawing:
+      <ul>
+        <li><code>padding</code> is the whitespace around the canvas</li>
+        <li><code>cellSize</code> is the size of the grid cells</li>
+        <li>
+          <code>maxTranslate</code> and <code>maxRotate</code> determine the maximum
+          value of the translation and rotation offsets
+        </li>
+      </ul>
+    </li>
+    <li>
+      Inside the setup, we take the usual setup steps: create a 400 x 400
+      canvas, with <code>rectMode(CENTER)</code> and
+      <code>angleMode(DEGREES)</code> set as default, and a
+      <code>noLoop()</code> to stop draw loop from running on each frame.
+    </li>
+    <li>
+      Inside the draw function, we use a double for loop to draw across and down
+      the grid of cells. The first loop sets the y coordinate and the second
+      loop sets the x coordinate. We take care of the padding around the canvas
+      by drawing within <code>[padding, width - 2 * padding]</code> on the x and
+      <code>[padding, height - 2 * padding]</code> on the y axis. Each iteration
+      of the loops increase the value of x and y by cellSize.
+    </li>
+    <li>
+      Inside the double for loop, we hand off drawing of the cell to the
+      <code>drawCell</code> function, passing it the center of the cell (
+      <code>x + cellSize/2</code>, <code>y + cellSize/2</code>).
+    </li>
+    <li>
+      The <code>drawCell</code> function first wraps the code in a
+      <code>push()</code> and <code>pop()</code> to isolate the transform. Then we
+      translate to coordinates to the center of the cell (passed as the params x
+      and y).
+    </li>
+    <li>
+      Next, we calculate the translation and rotation offsets using our
+      constants <code>maxTranslate</code> and <code>maxRotate</code>. Notice the
+      multiplication by <code>y / height</code> at the end which ensures the transforms
+      increase as we go down the y axis. With the offsets calculated, we translate
+      and rotate the coordinates by those amounts.
+    </li>
+    <li>
+      At last, we draw our rectangle with side length of <code>cellSize</code> and
+      the center of the grid as its center coordinates.
+    </li>
+  </ol>
+</Walkthrough>
+
+<div class="grid my-m">
+  <figure>
+    <img src={img015.src} alt="" />
+    <figcaption>
+      <code>maxRotate = 0</code>, <code>maxTranslate = 15</code>
+    </figcaption>
+  </figure>
+  <figure>
+    <img src={img300.src} alt="" />
+    <figcaption>
+      <code>maxRotate = 30</code>, <code>maxTranslate = 0</code>
+    </figcaption>
+  </figure>
+  <figure>
+    <img src={img3015.src} alt="" />
+    <figcaption>
+      <code>maxRotate = 30</code>, <code>maxTranslate = 15</code>
+    </figcaption>
+  </figure>
+</div>
+
+<h3>Variations</h3>
+<p>Here's a couple of starting points for variations you can explore.</p>
+<div class="grid">
+  <figure>
+    <img src={imgAlongX.src} alt="" />
+    <figcaption>
+      Increase the translation and rotation offsets along the x axis.
+    </figcaption>
+  </figure>
+  <figure>
+    <img src={imgCenter.src} alt="" />
+    <figcaption>Or outwards from the center.</figcaption>
+  </figure>
+  <figure>
+    <img src={imgScale.src} alt="" />
+    <figcaption>Use scale as another transform.</figcaption>
+  </figure>
+</div>
