@@ -1,0 +1,46 @@
+<div id="ten-print-teaser">
+  <div id="ten-print-sketch" class="max-h-[400px] w-full bg-lightest"></div>
+  <pre
+    class="mt-2xs p-2xs text-center"><code>bias = <span class="TKAdjustableNumber" data-var="bias" data-min="0" data-max="1" data-step="0.01" data-format="fraction" /></code></pre>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('ten-print-teaser')
+
+    Tangle.formats.fraction = value => ((value * 100) | 0) / 100
+
+    new p5(sketch => {
+      var cellSize = 40
+
+      var tangle = new Tangle(root, {
+        initialize() {
+          this.bias = 0.5
+        },
+        update() {}
+      })
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('ten-print-sketch')
+        canvas.addClass('mx-auto flex')
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+        sketch.randomSeed(42)
+
+        var bias = tangle.getValue('bias')
+
+        for (var y = 0; y < sketch.height; y += cellSize) {
+          for (var x = 0; x < sketch.width; x += cellSize) {
+            if (sketch.random() < bias) {
+              sketch.line(x, y, x + cellSize, y + cellSize)
+            } else {
+              sketch.line(x, y + cellSize, x + cellSize, y)
+            }
+          }
+        }
+      }
+    }, root)
+  </script>
+</div>

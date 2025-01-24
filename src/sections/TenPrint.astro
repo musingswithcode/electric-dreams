@@ -1,0 +1,65 @@
+---
+import sketch from './TenPrint/sketch.js?raw'
+import Teaser from './TenPrint/Teaser.astro'
+import Walkthrough from '~/components/Walkthrough.astro'
+---
+
+<h3 id="ten-print">10PRNT();</h3>
+
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      This classic artwork divides the canvas into a grid of squares and within
+      each draw either forward or backward slash randomly alternating between
+      the two. The end result is a maze-like generative piece.
+    </p>
+    <p>
+      To recreate this work, we use the simplest implemenation of
+      <em>randomness as choice</em>: an if-else statement where one branch draws
+      a forward slash and another a backward slash. We bias the drawing towards
+      prefering one shape over another based on the value of <code>bias</code>.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/77TtSuV35"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<Walkthrough
+  code={sketch}
+  steps={[
+    {lines: [2, 5]},
+    {lines: [8, 9]},
+    {lines: [15, 16, 22, 23]},
+    {lines: [17, 18, 19, 20], highlights: ['random() < bias']}
+  ]}
+>
+  <ol>
+    <li>
+      We define the the size of the grid cells as <code>cellSize</code>, and
+      <code>bias</code> which should be a value between 0 and 1.
+    </li>
+    <li>
+      Inside the <code>setup</code> function, we draw a 400 x 400px canvas and set
+      <code>noLoop()</code> to run the draw loop only once.
+    </li>
+    <li>
+      In the <code>draw</code> function, we a double for loop to draw a grid of cell,
+      with x and y coordinates determined by the canvas dimensions, and
+      <code>cellSize</code>.
+    </li>
+    <li>
+      For each grid cell, we draw either a line going from the top-left <code
+        >(x, y)</code
+      >
+      to bottom-right <code>(x + cellSize, y + cellSize)</code> corner or from the
+      bottom-left <code>(x, y + cellSize)</code> to top-right
+      <code>(x + cellSize, y)</code> corner. The choice between the two lines is
+      determined by the condition <code>random() &lt; bias</code>. Higher the
+      bias (closer to 1) more we prefer the line from bottom-left to top-right.
+    </li>
+  </ol>
+</Walkthrough>

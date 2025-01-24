@@ -4,6 +4,7 @@ import MolnarSquares from '~/sections/MolnarSquares.astro'
 import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
 import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
 import LeWittCubes from '~/sections/LeWittCubes.astro'
+import TenPrint from '~/sections/TenPrint.astro'
 ---
 
 <MainLayout>
@@ -53,10 +54,10 @@ import LeWittCubes from '~/sections/LeWittCubes.astro'
         </li>
         <li><a href="#lewitt-cubes">Sol LeWitt – <em>Cubes</em></a></li>
       </ul>
-      <li>Randomness as choice</li>
+      <li><a href="#randomness-as-choice">Randomness as choice</a></li>
       <ul>
-        <li><em>10PRNT()</em></li>
-        <li>C S Smith – <em>Tiling (Waves)</em></li>
+        <li><a href="#ten-print"><em>10PRNT()</em></a></li>
+        <li><a href="#smith-waves">C S Smith – <em>Tiling (Waves)</em></a></li>
       </ul>
     </ul>
   </div>
@@ -96,4 +97,18 @@ import LeWittCubes from '~/sections/LeWittCubes.astro'
 
   <MolnarDesOrdres />
   <LeWittCubes />
+
+  <h2 id="randomness-as-choice">Randomness as choice</h2>
+
+  <p>
+    The final pattern we'll look at treats randomness as a choice between
+    drawing different shapes. In p5.js, you can translate this either as an
+    if-else statement that uses <code>random() &lt; chance</code> as a condition
+    where each branch draws a different shape (like we'll see in the
+    <em>10PRNT</em> example) or pass an array of functions like
+    <code>random([drawA, drawB, ...])</code> to pick a shape to draw (like in the
+    following tiling <em>Waves</em> example).
+  </p>
+
+  <TenPrint />
 </MainLayout>
