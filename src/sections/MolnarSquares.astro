@@ -7,20 +7,28 @@ import Teaser from './MolnarSquares/Teaser.astro'
 import Walkthrough from '~/components/Walkthrough.astro'
 ---
 
-<h2>Vera Molnár &ndash; <em>Untitled 1974 (Squares)</em></h2>
+<h3 id="molnar-squares">
+  Vera Molnár &ndash; <em>Untitled (Squares), 1974</em>
+</h3>
 
 <div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
   <div class="prose flow">
     <p>
-      One pattern to use randomness in a generative sketch is to use it as an
-      offset on parameters of a shape, such as position or their dimensions. By
-      controlling where these offsets are applied or by repeating shapes using
-      loops, we can create quite complex patterns.
+      In this piece, Molnár draws a series of cascading squares centered on the
+      canvas and then offests their centers randomly with in a given bound. Play
+      with the value of <code>maxOffset</code> on the sketch to get a sense of how
+      the offset affects the drawing.
     </p>
     <p>
-      In p5.js, you can call the <code>random</code> function with a minimum and
-      maximum value, like so: <code>random(-min, max)</code>. This returns a
-      random value between those two bounds.
+      We'll start by first recreating this piece in p5.js using the
+      <code>for</code> loop to draw the cascading squares and then add an offset
+      with the <code>random</code> function within bounds. Once done, we'll jump
+      off and explore variations of this basic pattern with different types of shapes
+      and offsets.
+    </p>
+    <p>
+      Start by opening the sketch below in the p5.js editor. Remember to login
+      to save your work. A walkthrough of the code is discussed below.
     </p>
     <a
       class="button my-m"

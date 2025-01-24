@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-html.focus-within {
+html {
   scroll-behavior: smooth;
 }
 
@@ -40,4 +40,8 @@ a:not([class]) {
 ul[role='list'],
 ol[role='list'] {
   list-style: none;
+}
+
+:target {
+  scroll-margin-block: 3ex;
 }
