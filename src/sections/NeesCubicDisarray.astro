@@ -1,13 +1,10 @@
 ---
+import imgAlongX from './NeesCubicDisarray/images/nees-cubic-disarray-along-x.png'
+import imgCenter from './NeesCubicDisarray/images/nees-cubic-disarray-center.png'
+import imgScale from './NeesCubicDisarray/images/nees-cubic-disarray-scale.png'
+import sketch from './NeesCubicDisarray/sketch.js?raw'
+import Teaser from './NeesCubicDisarray/Teaser.astro'
 import Walkthrough from '~/components/Walkthrough.astro'
-import Teaser from './NeesCubicDisarrayTeaser.astro'
-import img015 from './images/nees-cubic-disarray-0-15.png'
-import img300 from './images/nees-cubic-disarray-30-0.png'
-import img3015 from './images/nees-cubic-disarray-30-15.png'
-import imgAlongX from './images/nees-cubic-disarray-along-x.png'
-import imgCenter from './images/nees-cubic-disarray-center.png'
-import imgScale from './images/nees-cubic-disarray-scale.png'
-import sketch from './sketches/nees-cubic-disarray.js?raw'
 ---
 
 <h2>Georg Nees &ndash; <em>Cubic Disarray, 1968</em></h2>
@@ -35,7 +32,6 @@ import sketch from './sketches/nees-cubic-disarray.js?raw'
   <Teaser />
 </div>
 
-<h3>Walkthrough</h3>
 <Walkthrough
   code={sketch}
   steps={[
@@ -108,28 +104,6 @@ import sketch from './sketches/nees-cubic-disarray.js?raw'
   </ol>
 </Walkthrough>
 
-<div class="grid my-m">
-  <figure>
-    <img src={img015.src} alt="" />
-    <figcaption>
-      <code>maxRotate = 0</code>, <code>maxTranslate = 15</code>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src={img300.src} alt="" />
-    <figcaption>
-      <code>maxRotate = 30</code>, <code>maxTranslate = 0</code>
-    </figcaption>
-  </figure>
-  <figure>
-    <img src={img3015.src} alt="" />
-    <figcaption>
-      <code>maxRotate = 30</code>, <code>maxTranslate = 15</code>
-    </figcaption>
-  </figure>
-</div>
-
-<h3>Variations</h3>
 <p>Here's a couple of starting points for variations you can explore.</p>
 <div class="grid">
   <figure>

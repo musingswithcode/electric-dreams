@@ -1,13 +1,10 @@
 ---
+import imgCircles from './MolnarSquares/images/molnar-squares-circles.png'
+import imgEqualOffsets from './MolnarSquares/images/molnar-squares-equal-offsets.png'
+import imgOffsetSides from './MolnarSquares/images/molnar-squares-offset-sides.png'
+import sketch from './MolnarSquares/sketch.js?raw'
+import Teaser from './MolnarSquares/Teaser.astro'
 import Walkthrough from '~/components/Walkthrough.astro'
-import Teaser from './MolnarSquaresTeaser.astro'
-import imgMaxOffset10 from './images/molnar-squares-maxoffset-10.png'
-import imgMaxOffset20 from './images/molnar-squares-maxoffset-20.png'
-import imgMaxOffset30 from './images/molnar-squares-maxoffset-30.png'
-import imgEqualOffsets from './images/molnar-squares-equal-offsets.png'
-import imgOffsetSides from './images/molnar-squares-offset-sides.png'
-import imgCircles from './images/molnar-squares-circles.png'
-import sketch from './sketches/molnar-squares.js?raw'
 ---
 
 <h2>Vera Molnár &ndash; <em>Untitled 1974 (Squares)</em></h2>
@@ -34,7 +31,6 @@ import sketch from './sketches/molnar-squares.js?raw'
   <Teaser />
 </div>
 
-<h3>Walkthrough</h3>
 <Walkthrough
   code={sketch}
   steps={[
@@ -78,22 +74,6 @@ import sketch from './sketches/molnar-squares.js?raw'
   </ol>
 </Walkthrough>
 
-<div class="grid my-m">
-  <figure>
-    <img src={imgMaxOffset10.src} alt="" />
-    <figcaption><code>maxOffset = 10</code></figcaption>
-  </figure>
-  <figure>
-    <img src={imgMaxOffset20.src} alt="" />
-    <figcaption><code>maxOffset = 20</code></figcaption>
-  </figure>
-  <figure>
-    <img src={imgMaxOffset30.src} alt="" />
-    <figcaption><code>maxOffset = 30</code></figcaption>
-  </figure>
-</div>
-
-<h3>Variations</h3>
 <p>
   The same basic pattern can be applied in different forms to generate
   interesting visual variations. Here's a few ideas for you to try out:

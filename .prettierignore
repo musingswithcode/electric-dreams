@@ -1,2 +1,2 @@
 public/libs
-src/components/walkthroughs/sketches
+src/sections/**/sketch.js
