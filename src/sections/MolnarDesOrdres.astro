@@ -1,0 +1,85 @@
+---
+import sketch from './MolnarDesOrdres/sketch.js?raw'
+import Teaser from './MolnarDesOrdres/Teaser.astro'
+import Walkthrough from '~/components/Walkthrough.astro'
+---
+
+<h3 id="molnar-des-ordres">
+  Vera Molnár &ndash; <em>Des Ordres (Grid), 1974</em>
+</h3>
+
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      Similar to her previous piece we looked at, Molnár starts by drawing a set
+      of cascading squares. But instead of adding random offsets, she knocks off
+      a square (does not draw it) some percent of time. The effect is more
+      pronounced by repeating the squares on a grid.
+    </p>
+    <p>
+      To recreate the piece, we'll use a double for loop to draw a grid of cells
+      on the canvas. Inside each cell, we draw the set of squares, wrapping each
+      rectangle drawing command in a condition like
+      <code>random() &lt; chance</code> which decides whether or not to draw a square.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/8U-U6vCuR"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<Walkthrough
+  code={sketch}
+  steps={[
+    {lines: [2, 5, 8]},
+    {lines: [11, 12, 13]},
+    {lines: [19, 20, 22, 23]},
+    {lines: [21]},
+    {lines: [27, 28, 35]},
+    {lines: [29, 34]},
+    {lines: [30, 31, 32, 33], highlights: ['random() < chance']}
+  ]}
+>
+  <ol>
+    <li>
+      We've got some constants at the top like <code>padding</code> around the canvas
+      and <code>cellSize</code> for the size of the grid cells. We also set
+      <code>chance</code>, a value between 0 & 1 which controls the probability
+      of drawing an inner square.
+    </li>
+    <li>
+      Inside the <code>setup</code> function, we draw a 400 x 400px canvas, set the
+      rectangle drawing mode to <code>CENTER</code>, and set
+      <code>noLoop()</code> to run the draw loop only once.
+    </li>
+    <li>
+      At the beginning of the sketch, we've got a double for loop to draw a grid
+      of cells. The loop takes care of ensuring we keep the <code>padding</code>
+      around the canvas.
+    </li>
+    <li>
+      Inside the for loops, we hand of drawing of the cells to
+      <code>drawCell</code> passing it the center coordinates of the cell.
+    </li>
+    <li>
+      The <code>drawCell</code> function first wraps the code in a
+      <code>push</code> and <code>pop</code> to isolate the transforms. Next, we
+      <code>translate</code> the coordinates to the center of the cell.
+    </li>
+    <li>
+      We use another for loop to draw the series of squares, starting from a
+      <code>size</code> of 5, upto and including <code>cellSize</code>,
+      incrementing by 5px each time.
+    </li>
+    <li>
+      Now for the magic, instead of drawing the squares directly, we have an
+      <code>if</code> statement with the condition
+      <code>random() &lt; change</code> wrapping the call to <code>rect</code>.
+      Interpret it as draw a particular inner square 80% of the time, if
+      <code>chance</code> is set to 0.8.
+    </li>
+  </ol>
+</Walkthrough>

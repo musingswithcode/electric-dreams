@@ -2,6 +2,7 @@
 import MainLayout from '~/layouts/MainLayout.astro'
 import MolnarSquares from '~/sections/MolnarSquares.astro'
 import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
+import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
 ---
 
 <MainLayout>
@@ -40,9 +41,13 @@ import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
           >
         </li>
       </ul>
-      <li>Randomness as chance</li>
+      <li><a href="#randomness-as-chance">Randomness as chance</a></li>
       <ul>
-        <li>Vera Molnár — <em>Des Ordres (Grid)</em></li>
+        <li>
+          <a href="#molnar-des-ordres">
+            Vera Molnár — <em>Des Ordres (Grid)</em>
+          </a>
+        </li>
         <li>Sol LeWitt — <em>Cubes</em></li>
       </ul>
       <li>Randomness as choice</li>
@@ -70,4 +75,22 @@ import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
 
   <MolnarSquares />
   <NeesCubicDisarray />
+
+  <h2 id="randomness-as-chance">Randomness as chance</h2>
+
+  <p>
+    The next pattern common in generative sketches is to use randomness as
+    probability or chance — kind of like a coin flip. Instead of
+    deterministically drawing a shape every time, you can knock off a piece some
+    arbitrary percentage of time.
+  </p>
+  <p>
+    Translating to p5.js, the best way to use this pattern is to call the
+    <code>random</code> function without any parameters. The default behaviour is
+    to return a value between 0 and 1. When used inside a condition like
+    <code>random() &lt; 0.5</code>, you can control who often something is
+    drawn.
+  </p>
+
+  <MolnarDesOrdres />
 </MainLayout>

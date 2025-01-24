@@ -1,0 +1,56 @@
+<div id="molnar-des-ordres-teaser">
+  <div id="molnar-des-ordres-sketch" class="max-h-[400px] w-full bg-lightest">
+  </div>
+  <pre
+    class="mt-2xs p-2xs text-center"><code>chance = <span class="TKAdjustableNumber" data-var="chance" data-min="0" data-max="1" data-step="0.01" data-format="fraction" /></code></pre>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('molnar-des-ordres-teaser')
+
+    Tangle.formats.fraction = value => ((value * 100) | 0) / 100
+
+    new p5(sketch => {
+      var padding = 20
+      var cellSize = 40
+
+      var tangle = new Tangle(root, {
+        initialize() {
+          this.chance = 0.8
+        },
+        update() {}
+      })
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('molnar-des-ordres-sketch')
+        canvas.addClass('mx-auto flex')
+        sketch.rectMode(sketch.CENTER)
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+        sketch.randomSeed(42)
+
+        for (var y = padding; y < sketch.height - 2 * padding; y += cellSize) {
+          for (var x = padding; x < sketch.width - 2 * padding; x += cellSize) {
+            sketch.drawCell(x + cellSize / 2, y + cellSize / 2)
+          }
+        }
+      }
+
+      sketch.drawCell = (x, y) => {
+        sketch.push()
+        sketch.translate(x, y)
+        var chance = tangle.getValue('chance')
+        for (var size = 5; size <= cellSize; size += 5) {
+          if (sketch.random() < chance) {
+            sketch.noFill()
+            sketch.rect(0, 0, size, size)
+          }
+        }
+        sketch.pop()
+      }
+    }, root)
+  </script>
+</div>
