@@ -10,45 +10,49 @@ import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
     <h2 class="text-3">Dialogues with the Machine</h2>
   </hgroup>
 
-  <p>
-    Welcome to the workshop! Together, we'll explore some classical pieces of
-    generative design, recreate them in code with
-    <a href="https://p5js.org/" target="_blank">p5.js</a> (Processing) and, even
-    plot them with a
-    <a href="https://axidraw.com/" target="_blank">pen plotter</a>. All the
-    content we'll cover is below. So if you are more comfortable, feel free to
-    explore it at your own pace, otherwise we'll walk through it during the
-    workshop.
-  </p>
+  <div class="sidebar" data-direction="rtl">
+    <div class="prose flow">
+      <p>
+        Welcome to the workshop! Together, we'll explore some classical pieces
+        of generative design, recreate them in code with
+        <a href="https://p5js.org/" target="_blank">p5.js</a> (Processing) and, even
+        plot them with a
+        <a href="https://axidraw.com/" target="_blank">pen plotter</a>. All the
+        content we'll cover is below. So if you are more comfortable, feel free
+        to explore it at your own pace, otherwise we'll walk through it during
+        the workshop.
+      </p>
 
-  <p>
-    First, we'll start by covering some basics of coding visuals with JavaScript
-    and p5.js. Then hand-pick a few examples of generative art and recreate
-    them. Broadly, we'll discuss three patterns today, all of which can be seen
-    as different lenses for viewing <em>randomness</em>.
-  </p>
-
-  <ul>
-    <li>Language reference</li>
-    <li><a href="#randomness-as-offsets">Randomness as offsets</a></li>
+      <p>
+        First, we'll start by covering some basics of coding visuals with
+        JavaScript and p5.js. Then hand-pick a few examples of generative art
+        and recreate them. Broadly, we'll discuss three patterns today, all of
+        which can be seen as different lenses for viewing <em>randomness</em>.
+      </p>
+    </div>
     <ul>
-      <li><a href="#molnar-squares">Vera Molnár — <em>Squares</em></a></li>
-      <li>
-        <a href="#nees-cubic-disarray">Georg Nees — <em>Cubic Disarray</em></a>
-      </li>
+      <li>Language reference</li>
+      <li><a href="#randomness-as-offsets">Randomness as offsets</a></li>
+      <ul>
+        <li><a href="#molnar-squares">Vera Molnár — <em>Squares</em></a></li>
+        <li>
+          <a href="#nees-cubic-disarray">Georg Nees — <em>Cubic Disarray</em></a
+          >
+        </li>
+      </ul>
+      <li>Randomness as chance</li>
+      <ul>
+        <li>Vera Molnár — <em>Des Ordres (Grid)</em></li>
+        <li>Sol LeWitt — <em>Cubes</em></li>
+      </ul>
+      <li>Randomness as choice</li>
+      <ul>
+        <li><em>10PRNT()</em></li>
+        <li>Sébastien Truchet — <em>Tiling (Triangles)</em></li>
+        <li>C S Smith - <em>Tiling (Waves)</em></li>
+      </ul>
     </ul>
-    <li>Randomness as chance</li>
-    <ul>
-      <li>Vera Molnár — <em>Des Ordres (Grid)</em></li>
-      <li>Sol LeWitt — <em>Cubes</em></li>
-    </ul>
-    <li>Randomness as choice</li>
-    <ul>
-      <li><em>10PRNT()</em></li>
-      <li>Sébastien Truchet — <em>Tiling (Triangles)</em></li>
-      <li>C S Smith - <em>Tiling (Waves)</em></li>
-    </ul>
-  </ul>
+  </div>
 
   <h2 id="randomness-as-offsets">Randomness as offsets</h2>
 
