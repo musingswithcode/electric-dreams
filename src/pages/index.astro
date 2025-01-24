@@ -3,6 +3,7 @@ import MainLayout from '~/layouts/MainLayout.astro'
 import MolnarSquares from '~/sections/MolnarSquares.astro'
 import NeesCubicDisarray from '~/sections/NeesCubicDisarray.astro'
 import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
+import LeWittCubes from '~/sections/LeWittCubes.astro'
 ---
 
 <MainLayout>
@@ -33,11 +34,13 @@ import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
     </div>
     <ul>
       <li>Language reference</li>
-      <li><a href="#randomness-as-offsets">Randomness as offsets</a></li>
+      <li>
+        <a href="#randomness-as-offsets">Randomness as offsets</a>
+      </li>
       <ul>
-        <li><a href="#molnar-squares">Vera Molnár — <em>Squares</em></a></li>
+        <li><a href="#molnar-squares">Vera Molnár – <em>Squares</em></a></li>
         <li>
-          <a href="#nees-cubic-disarray">Georg Nees — <em>Cubic Disarray</em></a
+          <a href="#nees-cubic-disarray">Georg Nees – <em>Cubic Disarray</em></a
           >
         </li>
       </ul>
@@ -45,16 +48,15 @@ import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
       <ul>
         <li>
           <a href="#molnar-des-ordres">
-            Vera Molnár — <em>Des Ordres (Grid)</em>
+            Vera Molnár – <em>Des Ordres (Grid)</em>
           </a>
         </li>
-        <li>Sol LeWitt — <em>Cubes</em></li>
+        <li><a href="#lewitt-cubes">Sol LeWitt – <em>Cubes</em></a></li>
       </ul>
       <li>Randomness as choice</li>
       <ul>
         <li><em>10PRNT()</em></li>
-        <li>Sébastien Truchet — <em>Tiling (Triangles)</em></li>
-        <li>C S Smith - <em>Tiling (Waves)</em></li>
+        <li>C S Smith – <em>Tiling (Waves)</em></li>
       </ul>
     </ul>
   </div>
@@ -93,4 +95,5 @@ import MolnarDesOrdres from '~/sections/MolnarDesOrdres.astro'
   </p>
 
   <MolnarDesOrdres />
+  <LeWittCubes />
 </MainLayout>

@@ -1,0 +1,87 @@
+<div id="lewitt-cubes-teaser">
+  <div id="lewitt-cubes-sketch" class="max-h-[400px] w-full bg-lightest"></div>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('lewitt-cubes-teaser')
+
+    new p5(sketch => {
+      var padding = 20
+      var cellSize = 40
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('lewitt-cubes-sketch')
+        canvas.addClass('mx-auto flex')
+        sketch.angleMode(sketch.DEGREES)
+        sketch.frameRate(3)
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+
+        for (var y = padding; y < sketch.height - 2 * padding; y += cellSize) {
+          for (var x = padding; x < sketch.width - 2 * padding; x += cellSize) {
+            sketch.drawCell(x + cellSize / 2, y + cellSize / 2, 16)
+          }
+        }
+      }
+
+      sketch.drawCell = (x, y, r) => {
+        sketch.push()
+        sketch.translate(x, y)
+        var lines = [
+          [0, 0, r * sketch.cos(30), r * sketch.sin(30)],
+          [0, 0, r * sketch.cos(90), r * sketch.sin(90)],
+          [0, 0, r * sketch.cos(150), r * sketch.sin(150)],
+          [0, 0, r * sketch.cos(210), r * sketch.sin(210)],
+          [0, 0, r * sketch.cos(270), r * sketch.sin(270)],
+          [0, 0, r * sketch.cos(330), r * sketch.sin(330)],
+          [
+            r * sketch.cos(30),
+            r * sketch.sin(30),
+            r * sketch.cos(90),
+            r * sketch.sin(90)
+          ],
+          [
+            r * sketch.cos(90),
+            r * sketch.sin(90),
+            r * sketch.cos(150),
+            r * sketch.sin(150)
+          ],
+          [
+            r * sketch.cos(150),
+            r * sketch.sin(150),
+            r * sketch.cos(210),
+            r * sketch.sin(210)
+          ],
+          [
+            r * sketch.cos(210),
+            r * sketch.sin(210),
+            r * sketch.cos(270),
+            r * sketch.sin(270)
+          ],
+          [
+            r * sketch.cos(270),
+            r * sketch.sin(270),
+            r * sketch.cos(330),
+            r * sketch.sin(330)
+          ],
+          [
+            r * sketch.cos(330),
+            r * sketch.sin(330),
+            r * sketch.cos(30),
+            r * sketch.sin(30)
+          ]
+        ]
+        var randomIndex = sketch.floor(sketch.random(0, 12))
+        for (var i = 0; i < lines.length; i++) {
+          if (i != randomIndex) {
+            sketch.line(...lines[i])
+          }
+        }
+        sketch.pop()
+      }
+    }, root)
+  </script>
+</div>

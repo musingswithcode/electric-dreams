@@ -1,0 +1,90 @@
+---
+import sketch from './LeWittCubes/sketch.js?raw'
+import Teaser from './LeWittCubes/Teaser.astro'
+import Walkthrough from '~/components/Walkthrough.astro'
+---
+
+<h3 id="lewitt-cubes">
+  Sol LeWitt &ndash; <em>Cubes</em>
+</h3>
+
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      We don't have to limit ourselves to simple rectangles and circles. The
+      same idea applies to complex shapes made of multiple parts. In this piece,
+      Sol LeWitt imagines a grid of cubes with an side removed at random.
+    </p>
+    <p>
+      The p5.js recreation is a bit more involved but fundamentally utilises the
+      same idea. Instead of using <code>random() &lt; chance</code> as a condition,
+      we break the shape into a list of lines and pick a random line from the list
+      to exclude from the drawing.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/5RLtFrQQB"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<Walkthrough
+  code={sketch}
+  steps={[
+    {lines: [2, 5]},
+    {lines: [8, 9, 10]},
+    {lines: [16, 17, 18, 19, 20]},
+    {lines: [24, 25, 39]},
+    {lines: [27, 28, 29, 30]},
+    {lines: [32, 33, 34, 35, 36, 37]}
+  ]}
+>
+  <ol>
+    <li>
+      We define the usual <code>padding</code> around the canvas and the size of
+      the cells as <code>cellSize</code>.
+    </li>
+    <li>
+      Inside the <code>setup</code> function, we draw a 400 x 400px canvas, set the
+      angle mode to <code>DEGREES</code>, and set
+      <code>noLoop()</code> to run the draw loop only once. Setting angles to degrees
+      will come in handy when we define the lines later. Feel free to use the default
+      radians if you find that easier to work with.
+    </li>
+    <li>
+      In the <code>draw</code> function, we have the same structure as the Georg
+      Nees sketch. A double for loop to draw a grid of cell, with x and y coordinates
+      determined by <code>padding</code>, the canvas dimensions, and
+      <code>cellSize</code>. The actual drawing inside the cell is handled off
+      to a <code>drawCell</code> function which get the coordinates of the cell center
+      and the radius of the cube.
+    </li>
+    <li>
+      The <code>drawCell</code> function first wraps the code in a
+      <code>push</code> and <code>pop</code> to isolate the transforms. Next, we
+      <code>translate</code> the coordinates to the center of the cell.
+    </li>
+    <li>
+      With the coordinates set to the centre of the grid, we make our list of
+      lines that compose the cube. This includes 6 spokes that start from the
+      center <code>(0, 0)</code> to the corners of the cube and 6 sides that connect
+      adjacent corners. For each line we define the starting point
+      <code>(x1, y1)</code> and the ending point <code>(x2, y2)</code>. Notice
+      that angles here are in degrees, increase in units of 30, and go
+      clockwise. The coordinates of a point on a circle of radius r at an angle
+      θ is <code>r * cos(θ)</code> and <code>r * sin(θ)</code>.
+    </li>
+    <li>
+      Next, we pick a random index by using the
+      <code>floor(random(0, lines.length))</code> with returns are whole number between
+      0 and 11. We run through the lines one by one in a for loop and draw them by
+      passing the coordinates to the <code>line</code> function with a <a
+        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax"
+        target="_blank">spread operator</a
+      >. If the line index matches our randomly choosen index, we don't draw the
+      line.
+    </li>
+  </ol>
+</Walkthrough>
