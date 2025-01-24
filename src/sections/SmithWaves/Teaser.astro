@@ -1,0 +1,51 @@
+<div id="smith-waves-teaser">
+  <div id="smith-waves-sketch" class="max-h-[400px] w-full bg-lightest"></div>
+
+  <script>
+    // @ts-nocheck
+    var root = document.getElementById('smith-waves-teaser')
+
+    new p5(sketch => {
+      var padding = 20
+      var cellSize = 40
+
+      sketch.setup = () => {
+        var canvas = sketch.createCanvas(400, 400)
+        canvas.parent('smith-waves-sketch')
+        canvas.addClass('mx-auto flex')
+        sketch.angleMode(sketch.DEGREES)
+        sketch.frameRate(3)
+      }
+
+      sketch.draw = () => {
+        sketch.background(255)
+
+        for (var y = padding; y < sketch.height - 2 * padding; y += cellSize) {
+          for (var x = padding; x < sketch.width - 2 * padding; x += cellSize) {
+            var selectedCell = sketch.random([
+              sketch.drawCellA,
+              sketch.drawCellB
+            ])
+            selectedCell(x, y)
+          }
+        }
+      }
+
+      sketch.drawCellA = (x, y) => {
+        sketch.push()
+        sketch.translate(x, y)
+        sketch.arc(0, 0, cellSize, cellSize, 0, 90)
+        sketch.arc(cellSize, cellSize, cellSize, cellSize, 180, 270)
+        sketch.pop()
+      }
+
+      sketch.drawCellB = (x, y) => {
+        sketch.push()
+        sketch.translate(x, y)
+        sketch.arc(0, cellSize, cellSize, cellSize, 270, 360)
+        sketch.arc(cellSize, 0, cellSize, cellSize, 90, 180)
+        sketch.pop()
+      }
+    }, root)
+  </script>
+</div>

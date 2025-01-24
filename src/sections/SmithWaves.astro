@@ -1,0 +1,84 @@
+---
+import sketch from './SmithWaves/sketch.js?raw'
+import Teaser from './SmithWaves/Teaser.astro'
+import Walkthrough from '~/components/Walkthrough.astro'
+---
+
+<h3 id="smith-waves">C S Smith – <em>Tiling (Waves)</em></h3>
+
+<div class="sidebar" data-direction="rtl" style="--sidebar-target-width: 400px">
+  <div class="prose flow">
+    <p>
+      This work with its tiling wave pattern is the most of complex of what
+      we'll look at in this workshop. Instead of the squares and lines we've
+      seen so far it uses arcs to create a sense of continuous lines.
+    </p>
+    <p>
+      To implement this form, we'll create separate functions for each unique
+      grid cell in the tiling and use the <code>random</code> function to pick between
+      them. We'll also take advantage of the <code>arc</code> function in p5.js to
+      draw open arcs given their center point, start and end angles.
+    </p>
+    <a
+      class="button my-m"
+      href="https://editor.p5js.org/ajithranka/sketches/aAATn7hu8"
+      target="_blank">Open sketch in p5.js editor</a
+    >
+  </div>
+  <Teaser />
+</div>
+
+<Walkthrough
+  code={sketch}
+  steps={[
+    {lines: [2, 5]},
+    {lines: [8, 9, 10]},
+    {lines: [16, 17, 20, 21]},
+    {lines: [18, 19], highlights: ['random([drawCellA, drawCellB])']},
+    {lines: [25, 26, 27, 28, 29]},
+    {lines: [33, 34, 35, 36, 37]}
+  ]}
+>
+  <ol>
+    <li>
+      We define the the size of the grid cells as <code>cellSize</code>, and
+      <code>padding</code> around the canvas.
+    </li>
+    <li>
+      Inside the <code>setup</code> function, we draw a 400 x 400px canvas, configure
+      <code>angleMode</code> to <code>DEGREES</code>, and set
+      <code>noLoop()</code> to run the draw loop only once.
+    </li>
+    <li>
+      In the <code>draw</code> function, we use a double for loop to draw a grid
+      of cell, with x and y coordinates determined by the canvas dimensions and
+      <code>padding</code>, and the <code>cellSize</code>.
+    </li>
+    <li>
+      Now for the part that's different: later on we'll define two functions for
+      drawing unique cells in the tiling - <code>drawCellA</code> and
+      <code>drawCellB</code>. Here use pass both functions as an array to
+      <code>random</code>, which picks one of the functions are returns it. In
+      the next line, we call the selected function passing it the top-left
+      coordinates of the cell.
+    </li>
+    <li>
+      The first draw function - <code>drawCellA</code> - wraps the code in
+      <code>push</code> and <code>pop</code> to isolate the transform and moves the
+      coordinates to the top-left corner of the cell. It then draw two arcs of width
+      and height matching the size of the cell. The first arc is centered on the
+      top-left corner, starts at 0 degrees and ends at 90 degrees. The second arc
+      is centered on the bottom-right corner, starts at 180 degrees and ends at 270
+      degrees.
+    </li>
+    <li>
+      The second draw function - <code>drawCellB</code> - is similar. It calls
+      <code>push</code> and <code>pop</code> to isolate the transform and moves the
+      coordinates to the top-left corner of the cell. Next, it draws two arcs of
+      width and height matching the size of the cell. The first arc is centered on
+      the bottom-left corner, starts at 270 degrees and ends at 360 degrees. The
+      second arc is centered on the top-right corner, starts at 90 degrees and ends
+      at 180 degrees.
+    </li>
+  </ol>
+</Walkthrough>
