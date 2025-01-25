@@ -19,21 +19,29 @@ import SmithWaves from '~/sections/SmithWaves.astro'
       <p>
         Welcome to the workshop! Together, we'll explore some classical pieces
         of generative design, recreate them in code with
-        <a href="https://p5js.org/" target="_blank">p5.js</a> (Processing) and, even
-        plot them with a
+        <a href="https://p5js.org/" target="_blank">p5.js</a> (Processing), and even
+        plot them in the end with a
         <a href="https://axidraw.com/" target="_blank">pen plotter</a>. All the
         content we'll cover is below. So if you are more comfortable, feel free
-        to explore it at your own pace, otherwise we'll walk through it during
-        the workshop.
+        to jump in and explore it at your own pace, otherwise, follow along and
+        we'll walk through it during the workshop.
       </p>
 
       <p>
-        First, we'll start by covering some basics of coding visuals with
-        JavaScript and p5.js. Then hand-pick a few examples of generative art
-        and recreate them. Broadly, we'll discuss three patterns today, all of
-        which can be seen as different lenses for viewing <em>randomness</em>.
+        Here's the plan: First, we'll start by quickly covering some basics of
+        coding visuals with JavaScript and p5.js. Then we'll hand-pick a few
+        examples of generative art and recreate them. Then, with some SVGs saved
+        from our sketches, we'll take them to a pen plotter for drawing.
+      </p>
+
+      <p>
+        Broadly, all the sketches we'll cover today can be grouped into three
+        patterns or lenses for viewing <em>randomness</em> – as an offset, as chance,
+        and as choice. If you are working ahead, use the table of contents to jump
+        between these sections.
       </p>
     </div>
+
     <ul>
       <li>Language reference</li>
       <li>
@@ -63,18 +71,43 @@ import SmithWaves from '~/sections/SmithWaves.astro'
     </ul>
   </div>
 
+  <h2 id="language">Language reference & template</h2>
+
+  <p>
+    Use the page linked below as a short guide to basics of drawing shapes with
+    p5.js. It might be handy to keep this reference open while we work through
+    the examples.
+  </p>
+  <a
+    class="button mt-m"
+    href="https://musingswithcode.github.io/rit-workshop/explainers/"
+    target="_blank">Interactive guide to p5.js</a
+  >
+
+  <p>
+    For making the sketches, you can clone this template. We have a little bit
+    of setup already done to save sketches to SVG. Click the sketch on the right
+    at any time to save it as an SVG. Also, remember to login in to save your
+    changes!
+  </p>
+  <a
+    class="button mt-m"
+    href="https://editor.p5js.org/ajithranka/sketches/ZJt_T_F4k"
+    target="_blank">Template with p5.js + p5-svg.js</a
+  >
+
   <h2 id="randomness-as-offsets">Randomness as offsets</h2>
 
   <p>
-    One pattern to use randomness in a generative sketch is to use it as an
-    offset on parameters of a shape, such as its position or dimensions. By
-    controlling where these offsets are applied or by repeating shapes using
-    loops, we can create quite complex patterns.
+    One common pattern for using randomness in a generative sketch is to apply
+    it as an offset on parameters of a shape, such as its position or
+    dimensions. By controlling where these offsets are applied or by layering
+    multiple offsets we can create quite complex patterns.
   </p>
   <p>
     In p5.js, you can call the <code>random</code> function with a minimum and maximum
-    value, like so: <code>random(-min, max)</code>. This returns a random value
-    between those two bounds.
+    bounds, like so: <code>random(-min, max)</code>. This returns a random value
+    between those two values (excluding the ends).
   </p>
 
   <MolnarSquares />
@@ -83,17 +116,17 @@ import SmithWaves from '~/sections/SmithWaves.astro'
   <h2 id="randomness-as-chance">Randomness as chance</h2>
 
   <p>
-    The next pattern common in generative sketches is to use randomness as
-    probability or chance — kind of like a coin flip. Instead of
-    deterministically drawing a shape every time, you can knock off a piece some
-    arbitrary percentage of time.
+    The next pattern we'll see in generative sketches is to use randomness as a
+    kind of probability or chance — much like flipping a coin to decide. Instead
+    of deterministically drawing a shape every time, you can knock off a piece
+    some arbitrary percentage of time depending on these proverbial coin flips.
   </p>
   <p>
     Translating to p5.js, the best way to use this pattern is to call the
     <code>random</code> function without any parameters. The default behaviour is
-    to return a value between 0 and 1. When used inside a condition like
-    <code>random() &lt; 0.5</code>, you can control who often something is
-    drawn.
+    to return a value between 0 and 1. When used inside an <code>if</code> condition
+    like <code>random() &lt; 0.5</code>, you can effectively draw something 50%
+    or half of the time.
   </p>
 
   <MolnarDesOrdres />
@@ -104,11 +137,13 @@ import SmithWaves from '~/sections/SmithWaves.astro'
   <p>
     The final pattern we'll look at treats randomness as a choice between
     drawing different shapes. In p5.js, you can translate this either as an
-    if-else statement that uses <code>random() &lt; chance</code> as a condition
-    where each branch draws a different shape (like we'll see in the
-    <em>10PRNT</em> example) or pass an array of functions like
-    <code>random([drawA, drawB, ...])</code> to pick a shape to draw (like in the
-    following tiling <em>Waves</em> example).
+    if-else statement that uses <code>random() &lt; chance</code> pattern. Each branch
+    draws a different shape depending on the value of <code>chance</code>. We'll
+    see in this in the <em>10PRNT</em> example. Otherwise, you can also pass an array
+    of functions like <code>random([drawA, drawB, ...])</code> to
+    <code>random</code> to pick a shape to draw. We'll see this in following tiling
+    <em>Waves</em>
+    example.
   </p>
 
   <TenPrint />
